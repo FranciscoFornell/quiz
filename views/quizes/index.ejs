@@ -1,3 +1,11 @@
+<form method="get" action="/quizes">
+ 	Buscar: 
+ 	<input type="text" name="search" value="<%= search||'' %>">
+ 	<input type="submit" value="Enviar">
+</form>
+<% if( search ) { %>
+	<a href="quizes/">Resetear búsqueda</a>
+<% } %>
 <table>
 	<% for( var i=0; i < quizes.length; i++) { %>
 		<tr>
