@@ -29,6 +29,10 @@ footer {
 nav span {
 	margin: 0px 10px 0px 0px;
 }
+table{
+	margin-left: auto;
+	margin-right: auto;
+}
 
 #ErrorMsgs {
 	color: #f61;
