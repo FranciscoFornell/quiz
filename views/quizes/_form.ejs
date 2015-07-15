@@ -1,6 +1,14 @@
 <label for="preg" class="rem">Pregunta:</label>
-<input type="text" id="preg" name="quiz[pregunta]" value="<%= quiz.pregunta %>"><p>
+<input type="text" id="preg" name="quiz[pregunta]" placeholder = "Pregunta" value="<%= quiz.pregunta %>"><p>
 <label for="resp" class="rem">Respuesta:</label>
-<input type="text" id="resp" name="quiz[respuesta]" value="<%= quiz.respuesta %>"><p>
+<input type="text" id="resp" name="quiz[respuesta]" placeholder = "Respuesta" value="<%= quiz.respuesta %>"><p>
+<label for="resp" class="rem">Tema:</label>
+<select name="quiz[tema]" id="tem" value=<%= quiz.tema=quiz.tema||'otro' %>>
+	<% for (var i in listaTemas) { %>
+		<option value=<%= listaTemas[i][0] %> <%= quiz.tema===listaTemas[i][0]?'selected':'' %>>
+			<%= listaTemas[i][1] %>
+		</option>
+	<% } %>
+</select>
 <a href="/quizes"><button type="button">Cancelar</button></a>
 <input type="submit" value="Salvar">

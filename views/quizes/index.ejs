@@ -1,13 +1,25 @@
-<form method="get" action="/quizes">
- 	Buscar: 
- 	<input type="text" name="search" value="<%= search||'' %>">
- 	<input type="submit" value="Enviar">
-</form>
-<% if( search ) { %>
-	<a href="quizes/">Resetear búsqueda</a>
-<% } %>
+<div class="panel">
+	<form method="get" action="/quizes">
+	 	Buscar: 
+	 	<input type="text" name="search" placeholder="Texto a buscar" value="<%= search||'' %>"><br>
+	 	Temas:
+	 	<% temasSelec=temasSelec||'' %>
+	 	<% for (var i in listaTemas) { %>
+	 		<div class="bloque-inline">
+	 			<input type="checkbox" name="temas[<%= i %>]" id="tema_<%= i %>"
+	 			value="<%= listaTemas[i][0] %>"
+	 			<%= temasSelec.indexOf(listaTemas[i][0])!==-1?' checked="checked"':'' %>>
+	 			<label for="tema_<%= i %>"><%= listaTemas[i][1]+'    ' %></label>
+	 		</div>
+	 	<% } %> <br>
+	 	<input type="submit" value="Filtrar por búsqueda y/o temas">
+	</form>
+	<% if( search||temasSelec ) { %>
+		<a href="/quizes">Resetear búsqueda</a>
+	<% } %>
+</div>
 <table>
-	<% for( var i=0; i < quizes.length; i++) { %>
+	<% for( var i in quizes) { %>
 		<tr>
 			<td>
 				<a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a>

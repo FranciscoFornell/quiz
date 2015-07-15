@@ -53,3 +53,12 @@ table{
 	font-size: 1.16em;
 	font-weight: bold;
 }
+
+.panel{
+	background-color: #999;
+	padding: 5px;
+	margin: 5px;
+}
+.bloque-inline{
+	display: inline-block;
+}
