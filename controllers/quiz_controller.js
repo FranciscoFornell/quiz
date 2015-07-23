@@ -1,19 +1,24 @@
 var models = require('../models/models.js');
-var listaTemas = [['otro', 'Otro'],
-				  ['humanidades', 'Humanidades'],
-				  ['ocio', 'Ocio'],
-				  ['ciencia', 'Ciencia'],
-				  ['tecnologia', 'Tecnología']];
+var listaTemas = [['otro', 'Otro', 'fa-question-circle'],
+				  ['humanidades', 'Humanidades', 'fa-university'],
+				  ['ocio', 'Ocio', 'fa-gamepad'],
+				  ['ciencia', 'Ciencia', 'fa-flask'],
+				  ['tecnologia', 'Tecnología', 'fa-cogs']];
 
 // Autoload - factoriza el código si la ruta incluye :quizId
 exports.load = function(req, res, next, quizId) {
-	models.Quiz.find(quizId).then(function(quiz) {
+	models.Quiz.find({
+		where: { id: Number(quizId) },
+		include: [{ model: models.Comment }]
+	}).then(function(quiz) {
 		if (quiz) {
 			req.quiz = quiz;
 			next();
 		} else {
 			next(new Error('No existe ninguna pregunta con quizId=' + quizId));
 		}
+	}).catch(function(error){
+		next(error);
 	});
 };
 
@@ -52,7 +57,10 @@ exports.index = function(req, res) {
 
 // GET /quizes/:id
 exports.show = function(req, res) {
-	res.render('quizes/show', {quiz: req.quiz, errors: []});
+	res.render('quizes/show', {
+		quiz: req.quiz,
+		listaTemas: listaTemas,
+		errors: []});
 };
 
 // GET /quizes/:id/answer

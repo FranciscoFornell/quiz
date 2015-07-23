@@ -1,0 +1,13 @@
+Añadir comentario: <p>
+
+<form method="post" action="/quizes/<%= quizid %>/comments/">
+	<input type="text" id="comment" name="comment[texto]" value="" placeholder="Escriba un comentario aquí"><br>
+	<a href="/quizes/<%= quizid %>" class="myButton btnWx2 btnAnimate">
+		<i class="fa fa-undo hoverColorRed"></i>
+		<span class="hoverColorRed">Cancelar</span>
+	</a>
+	<button type="submit" class="myButton btnAnimate">
+		<i class="fa fa-paper-plane hoverColorGreen"></i>
+		<span class="hoverColorGreen">Enviar</span>
+	</button>
+</form>

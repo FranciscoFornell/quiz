@@ -1,7 +1,22 @@
 <form method="get" action="/quizes/<%= quiz.id %>/answer">
+	<% for (var i = 0; i<listaTemas.length; i++)
+		quiz.tema = (listaTemas[i][0]===quiz.tema)?listaTemas[i][1]:quiz.tema; %>
 	<p>Tema: <%= quiz.tema %></p>
  	<p>Pregunta: <%= quiz.pregunta %></p>
  	<input type="text" name="respuesta" placeholder="Responda aquí">
- 	<input type="submit" value="Enviar">
+ 	<button type="submit" value="Enviar" class="myButton btnAnimate">
+ 		<i class="fa fa-paper-plane hoverColorGreen"></i>
+		<span class="hoverColorGreen">Enviar</span>
+ 	</button>
 </form>
 <a href="/quizes">Volver a la lista de preguntas</a>
+
+<p><a href="/quizes/<%= quiz.id %>/comments/new"><button class="myButton btnAnimate btnHx2 btnWx2">
+	<i class="fa fa-comments-o hoverColorBlue"></i>
+	<span class="hoverColorBlue">Nuevo comentario</span>
+</button></a></p>
+
+<p><strong>Comentarios:</strong></p>
+<% for(index in quiz.Comments) { %>
+	<p>- <%= quiz.Comments[index].texto %></p>
+<% } %>

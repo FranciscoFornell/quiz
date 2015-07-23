@@ -1,23 +1,38 @@
 <div class="panel">
 	<form method="get" action="/quizes">
-	 	Buscar: 
-	 	<input type="text" name="search" placeholder="Texto a buscar" value="<%= search||'' %>"><br>
-	 	Temas:
-	 	<% temasSelec=temasSelec||'' %>
-	 	<% for (var i in listaTemas) { %>
-	 		<div class="bloque-inline">
-	 			<input type="checkbox" name="temas[<%= i %>]" id="tema_<%= i %>"
-	 			value="<%= listaTemas[i][0] %>"
-	 			<%= temasSelec.indexOf(listaTemas[i][0])!==-1?' checked="checked"':'' %>>
-	 			<label for="tema_<%= i %>"><%= listaTemas[i][1]+'    ' %></label>
-	 		</div>
-	 	<% } %> <br>
-	 	<input type="submit" value="Filtrar por búsqueda y/o temas">
+	 	<div class="flexContainer">
+	 		<div>
+			 	Buscar: 
+			 	<input type="text" name="search" placeholder="Texto a buscar" value="<%= search||'' %>"><br>
+			 	Temas:
+			 	<% temasSelec=temasSelec||'' %>
+			 	<% for (var i in listaTemas) { %>
+			 		<label for="tema_<%= i %>">
+			 			<div class="myButton btnToggle hint--bottom" data-hint="<%= listaTemas[i][1] %>">
+			 				<input type="checkbox" name="temas[<%= i %>]" id="tema_<%= i %>"
+				 			value="<%= listaTemas[i][0] %>"
+				 			<%= temasSelec.indexOf(listaTemas[i][0])!==-1?' checked="checked"':'' %>>
+				 			
+			 				<i class="fa <%= listaTemas[i][2] %>"></i>
+			 				<div class="btnToggleText"><%= listaTemas[i][1] %></div>
+			 			</div>
+			 		</label>
+			 	<% } %> <br>
+				<% if( search||temasSelec ) { %>
+					<a href="/quizes">Resetear búsqueda</a>
+				<% } %>
+			</div>
+		 	<button type="submit" id="btnFilter" class="myButton btnWx2 btnHx2 btnAnimate">
+		 		<i class="fa fa-filter hoverColorGreen"></i>
+		 		<span class="hoverColorGreen">Aplicar filtros</span>
+		 	</button>
+		</div>
 	</form>
-	<% if( search||temasSelec ) { %>
-		<a href="/quizes">Resetear búsqueda</a>
-	<% } %>
 </div>
+<a href="/quizes/new"><button type="button" class="myButton btnAnimate btnWx2 btnHx2">
+	<i class="fa fa-file-o hoverColorBlue"></i>
+	<span class="hoverColorBlue">Crear pregunta</span>
+</button></a>
 <table>
 	<% for( var i in quizes) { %>
 		<tr>
@@ -25,16 +40,20 @@
 				<a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a>
 			</td>
 			<td>
-				<a href="quizes/<%= quizes[i].id %>/edit"><button>Editar</button></a>
+				<a href="quizes/<%= quizes[i].id %>/edit"><button class="myButton btnAnimate">
+
+					<i class="fa fa-pencil-square-o hoverColorGreen"></i>
+					<span class="hoverColorGreen">Editar</span>
+				</button></a>
 			</td>
 			<td>
 				<form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
-					<button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
-						Borrar
+					<button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');" class="myButton btnAnimate">
+						<i class="fa fa-trash hoverColorRed"></i>
+						<span class="hoverColorRed">Borrar</span>
 					</button>
 				</form>
 			</td>
 		</tr>
 	<% } %>
 </table>
-<a href="/quizes/new"><button type="button">Crear pregunta</button></a>

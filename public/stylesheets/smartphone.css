@@ -15,3 +15,56 @@ body {
 footer, input {
 	font-size: large;
 }
+input[type="text"]
+{
+    font-size: xx-large;
+    width: 70%;
+}
+
+.btnAnimate:hover > i {
+	opacity: 1;
+}
+.btnAnimate:hover span {
+	opacity: 0;
+	font-size: 1em;
+}
+.myButton:hover .hoverColorGreen {
+	color: DarkGreen;
+}
+.myButton:hover .hoverColorRed {
+	color: DarkRed;
+}
+.myButton:hover .hoverColorBlue {
+	color: DarkBlue;
+}
+.btnHx2 {
+	height: 70px;
+	width: 100%;
+}
+.btnHx2 span {
+	opacity: 1;
+	position: relative;
+	top: 0;
+}
+.btnHx2:hover span {
+	opacity: 1;
+	font-size: 0.9em;
+}
+.btnToggle {
+	display: block;
+	width: 100%;
+}
+.btnToggleText {
+	display: inline;
+}
+
+.flexContainer {
+	-webkit-box-orient: vertical ;
+	-moz-box-orient: vertical ;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+#btnFilter {
+	height: 60px;
+}
