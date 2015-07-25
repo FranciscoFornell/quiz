@@ -18,6 +18,17 @@
   <body>
     <div id="page-wrap">
       <header class="main" id="h1">
+        <% if(!session.user) { %>
+          <span class="right"><a href="/login" class="myButton btnAnimate">
+            <i class="fa fa-user hoverColorBlue"></i>
+            <span class="hoverColorBlue">Login</span>
+          </a></span>
+        <% } else { %>
+          <span class="right"><%= session.user.username %> <a href="/logout" class="myButton btnAnimate">
+            <i class="fa fa-user-times hoverColorRed"></i>
+            <span class="hoverColorRed">Logout</span>
+          </a></span>
+        <% } %>
         <h2>Quiz<span>: el juego de las preguntas</span></h2>
       </header>
       <nav class="main" id="n1" role="navigation">
@@ -26,7 +37,7 @@
         <span><a href="/author">Créditos</a></span>
       </nav>
       <section class="main" id="s1">
-        <% if ( errors.length ) { %>
+        <% if (errors.length) { %>
           <span id="ErrorMsgs">
             Corregir errores: <br/>
             <% for (var i in errors) { %>

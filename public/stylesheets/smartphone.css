@@ -15,7 +15,7 @@ body {
 footer, input {
 	font-size: large;
 }
-input[type="text"]
+input[type=text], input[type=password]
 {
     font-size: xx-large;
     width: 70%;

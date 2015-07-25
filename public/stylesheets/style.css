@@ -161,7 +161,7 @@ input[type=checkbox] {
 input[type=checkbox]:checked + i {
 	color: LimeGreen;
 }
-input[type=text]{
+input[type=text], input[type=password]{
 	width: 180px;
 }
 
@@ -180,4 +180,8 @@ input[type=text]{
 }
 #btnFilter{
 	height: 50px;
+}
+
+.right {
+	float: right;
 }
