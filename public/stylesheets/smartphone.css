@@ -28,6 +28,13 @@ input[type=text], input[type=password]
 	opacity: 0;
 	font-size: 1em;
 }
+.btnAnimateSmall:hover > i {
+	opacity: 1;
+}
+.btnAnimateSmall:hover span {
+	opacity: 0;
+	font-size: 1em;
+}
 .myButton:hover .hoverColorGreen {
 	color: DarkGreen;
 }

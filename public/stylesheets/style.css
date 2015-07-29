@@ -149,6 +149,22 @@ table{
 .btnHx2 i {
 	font-size: 2.2em;
 }
+.btnAnimateSmall i {
+	font-size: 1em;
+}
+.btnAnimateSmall span {
+	font-size: 0.7em;
+}
+.btnAnimateSmall:hover > i {
+	opacity: 0.2;
+}
+.btnAnimateSmall:hover span {
+	opacity: 1;
+	font-size: 0.8em;
+}
+.btnSmall span.btnSmall {
+	font-size: 0.8em;
+}
 .btnToggle {
 	width: 30px;
 }
@@ -184,4 +200,7 @@ input[type=text], input[type=password]{
 
 .right {
 	float: right;
+}
+form {
+	display: inline-block;
 }

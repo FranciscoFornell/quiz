@@ -8,8 +8,8 @@
  		<i class="fa fa-paper-plane hoverColorGreen"></i>
 		<span class="hoverColorGreen">Enviar</span>
  	</button>
-</form>
-<a href="/quizes">Volver a la lista de preguntas</a>
+</form><br>
+<a href="/quizes">Volver a la lista de preguntas</a><br><br>
 
 <p><a href="/quizes/<%= quiz.id %>/comments/new"><button class="myButton btnAnimate btnHx2 btnWx2">
 	<i class="fa fa-comments-o hoverColorBlue"></i>
@@ -17,6 +17,29 @@
 </button></a></p>
 
 <p><strong>Comentarios:</strong></p>
+<table>
 <% for(index in quiz.Comments) { %>
-	<p>- <%= quiz.Comments[index].texto %></p>
+	<% if(quiz.Comments[index].publicado || session.user) { %>
+		<tr>
+		<td align="left">- <%= quiz.Comments[index].texto %></td>
+		<% if(session.user) {%>
+			<td>
+				<form method="post" action="/quizes/<%= quiz.id %>/comments/<%= quiz.Comments[index].id %>?_method=delete">
+					<button type="submit" onClick="return confirm('¿Borrar el comentario?');" class="myButton btnAnimateSmall">
+						<i class="fa fa-trash hoverColorRed"></i>
+						<span class="hoverColorRed">Borrar</span>
+					</button>
+				</form>
+			</td>
+		<% } %>
+		<% if(session.user && !quiz.Comments[index].publicado) { %>
+			<td><form method="post" action="/quizes/<%= quiz.id %>/comments/<%= quiz.Comments[index].id %>/publish?_method=put">
+				<button type="submit" class="myButton btnAnimateSmall">
+					<i class="fa fa-eye hoverColorGreen"></i>
+					<span class="hoverColorGreen btnSmall">Publicar</span>
+				</button>
+			</form></td>
+		<% } %>
+	<% } %>
 <% } %>
+</table>
