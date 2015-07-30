@@ -1,0 +1,32 @@
+<h2>Estadísticas:</h2>
+
+<table class="statsTable">
+	<tr>
+		<td align="left">Total de preguntas: </td>
+		<td align="right"><%= statsData.quizes %></td>
+	</tr>
+	<tr>
+		<td align="left">Total de comentarios: </td>
+		<td align="right"><%= statsData.comments %></td>
+	</tr>
+	<tr>
+		<td align="left">Media de comentarios por pregunta: </td>
+		<td align="right">
+			<%= statsData.quizes?(statsData.comments / statsData.quizes).toFixed(2):0 %>
+		</td>
+	</tr>
+	<tr>
+		<td align="left">Preguntas sin comentarios: </td>
+		<td align="right"><%= statsData.quizes - statsData.commentedQuizes %></td>
+	</tr>
+	<tr>
+		<td align="left">Preguntas con comentarios: </td>
+		<td align="right"><%= statsData.commentedQuizes %></td>
+	</tr><tr>
+		<td align="left">Comentarios publicados: </td>
+		<td align="right"><%= statsData.publishedComments %></td>
+	</tr><tr>
+		<td align="left">Comentarios sin publicar: </td>
+		<td align="right"><%= statsData.comments - statsData.publishedComments %></td>
+	</tr>
+</table>

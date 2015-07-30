@@ -31,13 +31,35 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Helpers dinámicos:
 app.use(function(req, res, next){
     // guardar path en session.redir para después de login
-    if (!req.path.match(/\/login|\/logout/)) {
+    if (req.method === 'GET' && !req.path.match(/\/login|\/logout/)) {
         req.session.redir = req.path;
     }
 
     // hacer visible req.session en las vistas
     res.locals.session = req.session;
     next();
+});
+
+app.use(function(req, res, next){
+
+    var currentTime;
+
+    if (req.session.user){
+        currentTime = Date.now();
+        if (req.session.user.lastTime && currentTime > req.session.user.lastTime + 120000){
+            delete req.session.user;
+//He añadido a layout.ejs un script que si existe la variable de sesión alert,
+//muestra una alerta con el mensaje y borra la variable de sesión
+            req.session.alert = "La sesión ha expirado.";
+            req.session.errors = [{message: "Por favor, introduzca de nuevo su usuario y contraseña si desea seguir autenticado."}];
+            res.redirect("/login");
+        } else {
+            req.session.user.lastTime = currentTime;
+            next();
+        }
+    } else {
+        next();
+    }
 });
 
 app.use('/', routes);
